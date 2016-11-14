@@ -1,5 +1,6 @@
 import game_framework
-import main_state
+import prologue
+import battle_tutorial
 from pico2d import *
 
 
@@ -9,7 +10,6 @@ logo_image = None
 #565
 title_posy = 37
 start = False
-
 
 def enter():
     global main_image
@@ -34,7 +34,7 @@ def handle_events():
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
             if((event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)) and start:
-                game_framework.change_state(main_state)
+                game_framework.change_state(battle_tutorial)
 
 
 def draw():
@@ -51,7 +51,7 @@ def update():
     global title_posy
     global start
     if title_posy > 35:
-        title_posy -= 0.5
+        title_posy -= 1.0
     else:
         start = True
     pass

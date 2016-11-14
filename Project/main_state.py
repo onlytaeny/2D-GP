@@ -3,6 +3,8 @@ import json
 
 from pico2d import *
 
+import tutorial
+
 import game_framework
 import battle_menu
 import shop_state
@@ -62,10 +64,14 @@ def handle_events():
                 background_right = not background_right
                 bg_move = True
             elif ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)):
-                if Function.PointInRect(event.x, event.y, 18, 122, 565, 600):
-                    game_framework.push_state(battle_menu)
-                if Function.PointInRect(event.x, event.y, 128, 232, 565, 600):
-                    game_framework.push_state(shop_state)
+                if Function.story_count == 1:
+                    if Function.PointInRect(event.x, event.y, 18, 122, 565, 600):
+                        game_framework.change_state(tutorial)
+                else:
+                    if Function.PointInRect(event.x, event.y, 18, 122, 565, 600):
+                        game_framework.push_state(battle_menu)
+                    if Function.PointInRect(event.x, event.y, 128, 232, 565, 600):
+                        game_framework.push_state(shop_state)
 
 def update():
     global bg_posx
@@ -87,6 +93,7 @@ def draw():
     background.draw(bg_posx, 300)
     if (not bg_move):
         button_battle.clip_draw(0, 0, 105, 35, 70, 17)
-        button_shop.clip_draw(0, 0, 105, 35, 185, 17)
-        button_room.clip_draw(0, 0, 105, 35, 295, 17)
+        if(not(Function.story_count == 1)):
+            button_shop.clip_draw(0, 0, 105, 35, 185, 17)
+            button_room.clip_draw(0, 0, 105, 35, 295, 17)
     update_canvas()
