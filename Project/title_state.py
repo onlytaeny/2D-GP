@@ -1,6 +1,6 @@
 import game_framework
-import prologue
 import battle_tutorial
+import prologue
 from pico2d import *
 
 
@@ -8,7 +8,7 @@ name = "TitleState"
 main_image = None
 logo_image = None
 #565
-title_posy = 37
+title_posy = 565
 start = False
 
 def enter():
@@ -34,7 +34,7 @@ def handle_events():
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
             if((event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE)) and start:
-                game_framework.change_state(battle_tutorial)
+                game_framework.change_state(prologue)
 
 
 def draw():

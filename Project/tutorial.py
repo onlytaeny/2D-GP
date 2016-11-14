@@ -4,10 +4,7 @@ import json
 from pico2d import *
 
 import game_framework
-import main_state
 import battle_tutorial
-
-import Function
 
 name = "prologue"
 
@@ -19,7 +16,7 @@ bg_red1 = None
 bg_game = None
 story = []
 tutorial_battle = []
-story_count = 47
+story_count = 0
 stand_meirin = None
 stand_koakuma = None
 stand_remi = None

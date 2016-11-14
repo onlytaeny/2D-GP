@@ -6,12 +6,12 @@ import os
 
 name = "StartState"
 image = None
-logo_time = 3.0
+logo_time = 0.0
 
 
 def enter():
     global image
-    os.chdir('project\\resource')
+    os.chdir('resource')
     image = load_image('bgi\\bg_title2.png')
 
 
