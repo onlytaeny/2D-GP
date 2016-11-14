@@ -5,6 +5,9 @@ from pico2d import *
 
 import game_framework
 import battle_tutorial
+import main_state
+
+import Function
 
 name = "prologue"
 
@@ -16,7 +19,7 @@ bg_red1 = None
 bg_game = None
 story = []
 tutorial_battle = []
-story_count = 0
+story_count = 83
 stand_meirin = None
 stand_koakuma = None
 stand_remi = None
@@ -76,11 +79,16 @@ def handle_events():
         if ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count == 44:
             ctrl_flag = True
         if not ctrl_flag:
-            if ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count < 48:
+            if ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and not(story_count == 48)\
+                    and story_count < 85:
                 story_count += 1
                 print(story_count)
             elif ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count == 48:
                 game_framework.push_state(battle_tutorial)
+                story_count = 71
+            elif ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count == 85:
+                game_framework.change_state(main_state)
+                Function.story_count = 2
 
 
 def update():
@@ -97,14 +105,16 @@ def draw():
     clear_canvas()
     if story_count < 5:
         bg_red1.draw(400, 300)
-    elif story_count < 44:
+    elif story_count < 44 or 70 < story_count < 85:
         bg_game.draw(400, 300)
     elif story_count < 49:
         tutorial_battle[tuto_bat_pre_count].draw(400, 300)
+    elif story_count == 85:
+        black.draw(400, 300)
 
     if story_count < 5:
         stand_meirin.draw(400, 300)
-    elif 7 < story_count < 12 or 30 < story_count < 44:
+    elif 7 < story_count < 12 or 30 < story_count < 44 or 70 < story_count < 85:
         stand_koakuma.draw(400, 300)
     elif 11 < story_count < 16:
         stand_kaguya.draw(200, 300)
@@ -124,6 +134,6 @@ def draw():
     if 34 < story_count < 44:
         doll_sakuya.draw(700, 230)
 
-    if story_count < 49:
+    if story_count < 86:
         story[story_count].draw(400, 40)
     update_canvas()

@@ -10,6 +10,10 @@
           <option value="main_state" />
           <option value="Function" />
           <option value="prologue" />
+          <option value="start_state" />
+          <option value="tutorial" />
+          <option value="battle_menu" />
+          <option value="shop_state" />
         </list>
       </option>
     </inspection_tool>

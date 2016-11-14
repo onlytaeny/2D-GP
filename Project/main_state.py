@@ -92,8 +92,10 @@ def draw():
     clear_canvas()
     background.draw(bg_posx, 300)
     if (not bg_move):
-        button_battle.clip_draw(0, 0, 105, 35, 70, 17)
-        if(not(Function.story_count == 1)):
+        if (not(Function.story_count == 2)) and (not (Function.story_count == 3)):
+            button_battle.clip_draw(0, 0, 105, 35, 70, 17)
+        if (not(Function.story_count == 1)) and (not (Function.story_count == 3)):
             button_shop.clip_draw(0, 0, 105, 35, 185, 17)
+        if (not(Function.story_count == 1)) and (not(Function.story_count == 2)):
             button_room.clip_draw(0, 0, 105, 35, 295, 17)
     update_canvas()
