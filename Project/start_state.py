@@ -6,7 +6,7 @@ import os
 
 name = "StartState"
 image = None
-logo_time = 3.0
+logo_time = 0.0
 
 
 def enter():

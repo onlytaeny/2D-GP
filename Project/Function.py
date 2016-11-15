@@ -75,12 +75,22 @@ class charactor:
         if name == "mari":
             self.num = 24
             self.battle_spell_1 = spell("image_24_card01", 0, 70, 30, 15, -5, 14)
-            self.battle_spell_2 = spell("image_24_card01", 70, 30, 0, 0, 10, 24)
-            self.battle_spell_3 = spell("image_24_card01", 120, 60, 30, 10, -5, 44)
+            self.battle_spell_2 = spell("image_24_card02", 70, 30, 0, 0, 10, 24)
+            self.battle_spell_3 = spell("image_24_card03", 120, 60, 30, 10, -5, 44)
             self.assist_type = "atk"
             self.assist_chance = 20
             self.assist_style = ["cri", "mp"]
             self.assist_value = [20, 5]
+
+        if name == "aya":
+            self.num = 3
+            self.battle_spell_1 = spell("image_3_card01", 0, 50, 70, 25, -10, 18)
+            self.battle_spell_2 = spell("image_3_card02", 70, 50, 0, 25, -10, 18)
+            self.battle_spell_3 = spell("image_3_card03", 80, 0, 80, 0, 15, 46)
+            self.assist_type = "def"
+            self.assist_chance = 50
+            self.assist_style = ["atk", "cri"]
+            self.assist_value = [5, 5]
 
         if name == "sanae":
             self.num = 44
@@ -96,14 +106,8 @@ remi = charactor('remi')
 saku = charactor('saku')
 reimu = charactor('reimu')
 mari = charactor('mari')
-
-dolls.append(Doll(remi, 65, 45, 41, 43, 46, 52, 8, 50000))
-doll_count += 1
-dolls.append(Doll(saku, 57, 17, 72, 48, 39, 56, 14, 50000))
-doll_count += 1
-dolls.append(Doll(reimu, 35, 25, 85, 54, 42, 35, 9, 50000))
-doll_count += 1
-dolls.append(Doll(mari, 55, 54, 51, 56, 24, 33, 8, 50000))
-doll_count += 1
+aya = charactor('aya')
+sanae = charactor('sanae')
 
 story_count = 0
+Day_count = 1
