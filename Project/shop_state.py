@@ -96,6 +96,7 @@ def handle_events():
         else:
             if event.type == SDL_MOUSEBUTTONDOWN:
                 print(event.x, event.y)
+                print(ctrl_flag)
                 if ctrl_flag == 0:
                     if event.button == SDL_BUTTON_RIGHT:
                         if select_menu == 0:
@@ -111,7 +112,7 @@ def handle_events():
                             select_menu = 3
                         elif Function.PointInRect(event.x, event.y, 0, 113, 351, 449):
                             select_menu = 4
-                        elif Function.PointInRect(event.x, event.y, 214, 386, 108, 492):
+                        if Function.PointInRect(event.x, event.y, 214, 386, 108, 492) and select_menu == 1:
                             random_doll = random.randint(0, 4)
                             ctrl_flag = 1
                 elif ctrl_flag == 1:

@@ -7,6 +7,7 @@ from pico2d import *
 name = "TitleState"
 main_image = None
 logo_image = None
+title_bgm = None
 #565
 title_posy = 565
 start = False
@@ -14,15 +15,20 @@ start = False
 def enter():
     global main_image
     global logo_image
+    global title_bgm
     main_image = load_image('bgi\\bg_title.png')
     logo_image = load_image('image\\tpw2nd_logo.png')
+    title_bgm = load_music('bgm\\bgm_title2.ogg')
+    title_bgm.repeat_play()
 
 
 def exit():
     global main_image
     global logo_image
+    global title_bgm
     del(main_image)
     del(logo_image)
+    del(title_bgm)
 
 
 def handle_events():

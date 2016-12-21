@@ -22,15 +22,20 @@ button_battle = None
 button_shop = None
 button_room = None
 
+bgm = None
+
 def enter():
     global background
     global button_battle
     global button_shop
     global button_room
+    global bgm
     background = load_image('bgi\\bg_gensou.png')
     button_battle = load_image('image\\button_map_battle.png')
     button_shop = load_image('image\\button_map_shop.png')
     button_room = load_image('image\\button_map_room.png')
+    bgm = load_music('bgm\\bgm_map.ogg')
+    bgm.repeat_play()
 
 
 def exit():
@@ -38,10 +43,12 @@ def exit():
     global button_battle
     global button_shop
     global button_room
+    global bgm
     del(background)
     del(button_battle)
     del(button_shop)
     del(button_room)
+    del(bgm)
 
 
 def pause():

@@ -17,6 +17,7 @@ tuto_bat_pre_count = 0
 black = None
 bg_red1 = None
 bg_game = None
+story_bgm = None
 story = []
 tutorial_battle = []
 story_count = 0
@@ -36,6 +37,7 @@ def enter():
     global black, bg_red1, bg_game
     global stand_meirin, stand_koakuma, stand_remi, stand_kaguya, stand_sakuya, stand_yuyuko, stand_youmu, stand_yukari, stand_reimu, stand_marisa
     global doll_sakuya
+    global story_bgm
     black = load_image('bgi\\bg_black.png')
     bg_red1 = load_image('bgi\\bg_scn_red.png')
     bg_game = load_image('bgi\\bg_scn_game.png')
@@ -50,6 +52,8 @@ def enter():
     stand_reimu = load_image('csimage\\st_reimu.png')
     stand_marisa = load_image('csimage\\st_marisa.png')
     doll_sakuya = load_image('image\\q_stand_43.png')
+    story_bgm = load_music('bgm\\bgm_normal.ogg')
+    story_bgm.repeat_play()
     for i in range(1, 87):
         story.append(load_image('story\\tutorial\\K-' + str(i) + '.png'))
     for i in range(1, 6):
@@ -57,9 +61,10 @@ def enter():
 
 
 def exit():
-    global black, story
+    global black, story, story_bgm
     del(black)
     del(story)
+    del(story_bgm)
 
 
 def pause():
@@ -72,6 +77,7 @@ def resume():
 
 def handle_events():
     global story_count, ctrl_flag
+    global story_bgm
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -82,23 +88,32 @@ def handle_events():
             if ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and not(story_count == 48)\
                     and story_count < 85:
                 story_count += 1
-                print(story_count)
+                if story_count == 5:
+                    story_bgm = load_music('bgm\\bgm_remi.ogg')
+                    story_bgm.repeat_play()
             elif ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count == 48:
                 game_framework.push_state(battle_tutorial)
-                story_count = 71
+                story_bgm = load_music('bgm\\bgm_dream.ogg')
+                story_bgm.repeat_play()
+                story_count = 70
             elif ((event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)) and story_count == 85:
                 game_framework.change_state(main_state)
                 Function.story_count = 2
 
 
 def update():
-    global ctrl_flag, tuto_bat_pre_count, story_count
+    global ctrl_flag, tuto_bat_pre_count, story_count, story_bgm
     if ctrl_flag and (tuto_bat_pre_count < 4):
         tuto_bat_pre_count += 1
         delay(1.0)
     elif tuto_bat_pre_count == 4 and story_count == 44:
         story_count = 45
         ctrl_flag = False
+
+    if story_count == 70:
+        story_bgm = load_music('bgm\\bgm_remi.ogg')
+        story_bgm.repeat_play()
+        story_count = 71
 
 def draw():
     global story_count, tuto_bat_pre_count
